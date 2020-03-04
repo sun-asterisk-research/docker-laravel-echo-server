@@ -1,0 +1,16 @@
+{
+  "name": "docker-laravel-echo-server",
+  "version": "0.0.0",
+  "main": "src/index.js",
+  "repository": "git@github.com:sun-asterisk-research/docker-laravel-echo-server.git",
+  "license": "MIT",
+  "scripts": {
+    "start": "node -r esm src/index.js"
+  },
+  "dependencies": {
+    "envalid": "^6.0.1",
+    "esm": "^3.2.25",
+    "laravel-echo-server": "^1.6.0",
+    "sqlite3": "^4.1.1"
+  }
+}
