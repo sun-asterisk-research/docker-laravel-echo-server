@@ -7,6 +7,7 @@ import {
 
 const validEnv = cleanEnv(process.env, {
     AUTH_HOST: url({
+        default: 'http://localhost',
         desc: 'The host of the server that authenticates private and presence channels',
     }),
 
