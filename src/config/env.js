@@ -47,11 +47,13 @@ const validEnv = cleanEnv(process.env, {
     }),
 
     ALLOW_METHODS: str({
-        default: 'Access control allowed methods',
+        default: '',
+        desc: 'Access control allowed methods',
     }),
 
     ALLOW_HEADERS: str({
-        default: 'Access control allowed headers',
+        default: '',
+        desc: 'Access control allowed headers',
     }),
 
     DEV_MODE: bool({
