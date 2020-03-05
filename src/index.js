@@ -6,17 +6,18 @@ import {
     ENABLE_HTTP,
     ENABLE_REDIS,
     DATABASE,
-    REDIS_HOST,
-    REDIS_PORT,
-    REDIS_PASSWORD,
     SQLITE_DB_PATH,
     ALLOW_CORS,
     ALLOW_ORIGIN,
     ALLOW_METHODS,
     ALLOW_HEADERS,
     DEV_MODE,
-} from './config';
-import clients from './clients';
+    useRedis,
+} from './config/env';
+
+import clients from './config/clients';
+
+const redis = useRedis ? require('./config/redis').default : {};
 
 LaravelEchoServer.run({
     authHost: AUTH_HOST,
@@ -24,11 +25,7 @@ LaravelEchoServer.run({
     clients,
     database: DATABASE,
     databaseConfig: {
-        redis: {
-            host: REDIS_HOST,
-            port: REDIS_PORT,
-            password: REDIS_PASSWORD,
-        },
+        redis,
         sqlite: {
             databasePath: SQLITE_DB_PATH,
         },
@@ -46,5 +43,5 @@ LaravelEchoServer.run({
         allowOrigin: ALLOW_ORIGIN,
         allowMethods: ALLOW_METHODS,
         allowHeaders: ALLOW_HEADERS,
-    }
+    },
 })

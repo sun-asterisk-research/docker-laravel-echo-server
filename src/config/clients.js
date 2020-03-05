@@ -1,7 +1,7 @@
 let config;
 
 try {
-    config = require('../laravel-echo-server.json');
+    config = require('../../laravel-echo-server.json');
 } catch {
     config = {};
 }

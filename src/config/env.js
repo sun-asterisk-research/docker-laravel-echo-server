@@ -1,19 +1,9 @@
 import {
     cleanEnv,
-    port,
-    url,
-    str,
     bool,
-    makeValidator,
+    str,
+    url,
 } from 'envalid';
-
-const optionalString = makeValidator((input) => {
-    if (input == null || typeof input === 'string') {
-        return input;
-    }
-
-    throw new Error('Must be a string or left unset');
-});
 
 const validEnv = cleanEnv(process.env, {
     AUTH_HOST: url({
@@ -41,24 +31,9 @@ const validEnv = cleanEnv(process.env, {
         desc: 'Database to store presence channels data',
     }),
 
-    REDIS_HOST: optionalString({
-        default: null,
-        desc: 'Redis host',
-    }),
-
-    REDIS_PORT: port({
-        default: 6379,
-        desc: 'Redis port',
-    }),
-
-    REDIS_PASSWORD: optionalString({
-        default: undefined,
-        desc: 'Redis password',
-    }),
-
     SQLITE_DB_PATH: str({
         default: '/database/laravel-echo-server.sqlite',
-        desc: 'SQLite database path'
+        desc: 'SQLite database path',
     }),
 
     ALLOW_CORS: bool({
@@ -68,7 +43,7 @@ const validEnv = cleanEnv(process.env, {
 
     ALLOW_ORIGIN: str({
         default: '',
-        desc: 'Access control allowed origins'
+        desc: 'Access control allowed origins',
     }),
 
     ALLOW_METHODS: str({
@@ -87,15 +62,14 @@ const validEnv = cleanEnv(process.env, {
     strict: true,
 })
 
+export const useRedis = validEnv.ENABLE_REDIS || validEnv.DATABASE === 'redis';
+
 export const {
     AUTH_HOST,
     AUTH_ENDPOINT,
     ENABLE_HTTP,
     ENABLE_REDIS,
     DATABASE,
-    REDIS_HOST,
-    REDIS_PORT,
-    REDIS_PASSWORD,
     SQLITE_DB_PATH,
     ALLOW_CORS,
     ALLOW_ORIGIN,
