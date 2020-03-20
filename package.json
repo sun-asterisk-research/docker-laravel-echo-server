@@ -10,7 +10,7 @@
   "dependencies": {
     "envalid": "^6.0.1",
     "esm": "^3.2.25",
-    "laravel-echo-server": "^1.6.0",
+    "laravel-echo-server": "^1.6.1",
     "sqlite3": "^4.1.1"
   }
 }
