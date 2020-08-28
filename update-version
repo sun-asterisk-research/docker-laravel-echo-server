@@ -1,0 +1,19 @@
+#!/bin/bash
+
+SEMVER_REGEX="^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$"
+
+VERSION=$1
+
+SEMVER_MATCH=$(echo $VERSION | grep -P "$SEMVER_REGEX")
+
+if [ -z $SEMVER_MATCH ]; then
+    echo "$VERSION is not a valid semver"
+    exit 1
+fi
+
+yarn add --exact --audit --non-interactive "laravel-echo-server@$VERSION"
+
+[[ $VERSION =~ ^[0-9]+\.[0-9]+ ]] && MINOR="${BASH_REMATCH[0]}"
+
+sed -ri "s/MINOR=.+/MINOR=$MINOR/" hooks/push && echo "MINOR is set to $MINOR"
+sed -ri "s/PATCH=.+/PATCH=$VERSION/" hooks/push && echo "PATCH is set to $VERSION"

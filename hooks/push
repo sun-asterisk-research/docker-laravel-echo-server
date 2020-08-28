@@ -1,0 +1,11 @@
+#!/bin/bash
+
+set -e
+
+MINOR=1.6
+PATCH=1.6.2
+
+for tag in $MINOR $PATCH; do
+    docker tag "$IMAGE_NAME" "$DOCKER_REPO:$tag"
+    docker push "$DOCKER_REPO:$tag"
+done

@@ -8,9 +8,9 @@
     "start": "node -r esm src/index.js"
   },
   "dependencies": {
-    "envalid": "^6.0.1",
+    "envalid": "^6.0.2",
     "esm": "^3.2.25",
-    "laravel-echo-server": "^1.6.1",
-    "sqlite3": "^4.1.1"
+    "laravel-echo-server": "1.6.2",
+    "sqlite3": "^5.0.0"
   }
 }
