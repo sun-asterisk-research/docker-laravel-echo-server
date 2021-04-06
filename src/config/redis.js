@@ -3,6 +3,7 @@ import {
     host,
     port,
     str,
+    num,
     makeValidator,
     EnvError,
 } from 'envalid';
@@ -17,7 +18,7 @@ const optionalString = makeValidator((input) => {
 
 const env = cleanEnv(process.env, {
     REDIS_HOST: host({
-        default: null,
+        default: undefined,
         desc: 'Redis host',
     }),
 
@@ -29,6 +30,11 @@ const env = cleanEnv(process.env, {
     REDIS_PASSWORD: optionalString({
         default: undefined,
         desc: 'Redis password',
+    }),
+
+    REDIS_DB: num({
+        default: 1,
+        desc: 'Redis database index to use',
     }),
 
     REDIS_KEY_PREFIX: str({
@@ -43,5 +49,6 @@ export default {
     host: env.REDIS_HOST,
     port: env.REDIS_PORT,
     password: env.REDIS_PASSWORD,
+    db: env.REDIS_DB,
     keyPrefix: env.REDIS_KEY_PREFIX,
 };
