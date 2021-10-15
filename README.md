@@ -57,20 +57,26 @@ docker run -v <your sqlite db file>:/database/laravel-echo-server.sqlite \
 
 The image is configurable via environment variables.
 
-| Variable         | Default                                | Derscription                                                            |
-|------------------|----------------------------------------|-------------------------------------------------------------------------|
-| AUTH_HOST        |                                        | The host of the server that authenticates private and presence channels |
-| AUTH_ENDPOINT    | `/broadcasting/auth`                   | The route that authenticates private channels                           |
-| ENABLE_HTTP      | `true`                                 | Enable HTTP subscriber                                                  |
-| ENABLE_REDIS     | `true`                                 | Enable Redis subscriber                                                 |
-| DATABASE         | `redis`                                | Database used to store presence channels data                           |
-| REDIS_HOST       |                                        | Redis server host                                                       |
-| REDIS_PORT       | `6379`                                 | Redis server port                                                       |
-| REDIS_PASSWORD   |                                        | Redis server password                                                   |
-| REDIS_KEY_PREFIX | `''`                                   | Prefix for Redis keys. Should match your Laravel app's Redis config     |
-| SQLITE_DB_PATH   | `/database/laravel-echo-server.sqlite` | SQLite database path                                                    |
-| ALLOW_CORS       | `false`                                | Allow CORS                                                              |
-| ALLOW_ORIGIN     | `''`                                   | Access-Control-Allow-Origin Header                                      |
-| ALLOW_METHODS    | `''`                                   | Access-Control-Allow-Methods Header                                     |
-| ALLOW_HEADERS    | `''`                                   | Access-Control-Allow-Headers Header                                     |
-| DEV_MODE         | `false`                                | Adds additional logging for development purposes                        |
+| Variable                  | Default                                | Derscription                                                                   |
+|---------------------------|----------------------------------------|--------------------------------------------------------------------------------|
+| `HOST`                    | `null`                                 | The host of the socket.io server                                               |
+| `PORT`                    | `6001`                                 | The port that the socket.io server should run on                               |
+| `AUTH_HOST`               |                                        | The host of the server that authenticates private and presence channels        |
+| `AUTH_ENDPOINT`           | `/broadcasting/auth`                   | The route that authenticates private channels                                  |
+| `ENABLE_HTTP`             | `true`                                 | Enable HTTP subscriber                                                         |
+| `ENABLE_REDIS`            | `true`                                 | Enable Redis subscriber                                                        |
+| `DATABASE`                | `redis`                                | Database used to store presence channels data                                  |
+| `REDIS_HOST`              | `localhost`                            | Redis server host                                                              |
+| `REDIS_PORT`              | `6379`                                 | Redis server port                                                              |
+| `REDIS_PASSWORD`          | `null`                                 | Redis server password                                                          |
+| `REDIS_KEY_PREFIX`        | `''`                                   | Prefix for Redis keys. Should match your Laravel app's Redis config            |
+| `SQLITE_DB_PATH`          | `/database/laravel-echo-server.sqlite` | SQLite database path (relative to `/laravel-echo-server`, must start with `/`) |
+| `ALLOW_CORS`              | `false`                                | Allow CORS                                                                     |
+| `ALLOW_ORIGIN`            | `''`                                   | Access-Control-Allow-Origin Header                                             |
+| `ALLOW_METHODS`           | `''`                                   | Access-Control-Allow-Methods Header                                            |
+| `ALLOW_HEADERS`           | `''`                                   | Access-Control-Allow-Headers Header                                            |
+| `ENABLE_METRICS`          | `false`                                | Enable metrics endpoint for Prometheus                                         |
+| `COLLECT_DEFAULT_METRICS` | `false`                                | Collect default Prometheus metrics                                             |
+| `METRICS_PATH`            | `/metrics`                             | Metrics path                                                                   |
+| `METRICS_PORT`            | `9090`                                 | Metrics port                                                                   |
+| `DEV_MODE`                | `false`                                | Adds additional logging for development purposes                               |
