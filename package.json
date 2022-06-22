@@ -12,6 +12,6 @@
     "esm": "^3.2.25",
     "laravel-echo-server": "1.6.2",
     "socket.io-prometheus-metrics": "^1.0.6",
-    "sqlite3": "^5.0.2"
+    "sqlite3": "^5.0.3"
   }
 }
